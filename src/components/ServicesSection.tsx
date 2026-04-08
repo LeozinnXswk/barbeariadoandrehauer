@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { Clock, Scissors } from "lucide-react";
 
 const services = [
-  { name: "Corte de Cabelo", price: "R$ 50,00", duration: "45 min" },
-  { name: "Design de Barba", price: "R$ 50,00", duration: "30 min", plan: true },
-  { name: "Cabelo & Barba", price: "R$ 100,00", duration: "60 min" },
-  { name: "Pezinho", price: "R$ 15,00", duration: "15 min", plan: true },
-  { name: "Máquina no Cabelo", price: "R$ 35,00", duration: "30 min", plan: true },
-  { name: "Máquina na Barba", price: "R$ 35,00", duration: "30 min", plan: true },
-  { name: "Selagem", price: "A partir de R$ 80,00", duration: "45 min", plan: true },
-  { name: "Hidratação", price: "R$ 40,00", duration: "30 min" },
+  { name: "Cabelo", price: "R$ 50,00", duration: "45 min" },
+  { name: "Barba", price: "R$ 40,00", duration: "30 min" },
+  { name: "Cabelo e Barba", price: "R$ 80,00", duration: "60 min" },
+  { name: "Pé de Cabelo", price: "R$ 20,00", duration: "15 min" },
+  { name: "Sobrancelha", price: "R$ 20,00", duration: "15 min" },
+  { name: "Depilação de Orelha e Nariz", price: "R$ 10,00", duration: "10 min" },
 ];
-
-const categories = ["AVULSO", "Club", "EXTRA"];
 
 const ServicesSection = () => {
   return (
@@ -25,16 +21,6 @@ const ServicesSection = () => {
           Clique no item para obter informações
         </p>
 
-        <div className="flex gap-3 justify-center mb-8 flex-wrap">
-          {categories.map((cat) => (
-            <span
-              key={cat}
-              className="px-4 py-1.5 rounded-full border border-primary/30 text-sm text-foreground/80 hover:bg-primary/10 cursor-pointer transition-colors"
-            >
-              {cat}
-            </span>
-          ))}
-        </div>
 
         <div className="max-w-2xl mx-auto space-y-3">
           {services.map((service) => (
@@ -48,11 +34,6 @@ const ServicesSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">{service.name}</h3>
-                  {service.plan && (
-                    <span className="inline-block text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full mt-1">
-                      ⭐ Plano disponível
-                    </span>
-                  )}
                   <div className="flex items-center gap-3 mt-1">
                     <span className="text-primary text-sm font-semibold">{service.price}</span>
                     <span className="flex items-center gap-1 text-muted-foreground text-xs">

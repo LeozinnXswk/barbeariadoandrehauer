@@ -3,12 +3,17 @@ import { toast } from "sonner";
 
 const paymentMethods = [
   "Dinheiro", "Cartão de Débito", "Cartão de Crédito", "Pix",
-  "Master/Visa Crédito", "Master/Visa Débito", "Elo/Amex",
+];
+
+const phoneContacts = [
+  { name: "Barbeiro André", phone: "(41) 9553-0001" },
+  { name: "Barbeiro José", phone: "(41) 9143-9149" },
+  { name: "Barbeiro Kauê", phone: "(41) 9824-4945" },
 ];
 
 const ContactSection = () => {
-  const copyPhone = () => {
-    navigator.clipboard.writeText("(41) 93618-3638");
+  const copyPhone = (phone: string) => {
+    navigator.clipboard.writeText(phone);
     toast.success("Número copiado!");
   };
 
@@ -25,22 +30,29 @@ const ContactSection = () => {
               <MapPin className="w-5 h-5" /> Localização
             </h3>
             <p className="text-muted-foreground">
-              Rua Alcino Guanabara, 1622 - 81630-190 Hauer - Curitiba/PR
+              R. Prof. João Soares Barcelos, 1147 - Loja 01 - Hauer, Curitiba - PR, 81630-060
             </p>
           </div>
 
           <div className="bg-card rounded-lg border border-border p-6">
             <h3 className="text-primary font-heading text-lg font-semibold mb-3 flex items-center gap-2">
-              <Phone className="w-5 h-5" /> Telefone
+              <Phone className="w-5 h-5" /> Telefones
             </h3>
-            <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">(41) 93618-3638</span>
-              <button
-                onClick={copyPhone}
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Copy className="w-4 h-4" />
-              </button>
+            <div className="space-y-3">
+              {phoneContacts.map((c) => (
+                <div key={c.name} className="flex items-center justify-between">
+                  <div>
+                    <span className="text-foreground text-sm font-semibold">{c.name}</span>
+                    <p className="text-muted-foreground text-sm">{c.phone}</p>
+                  </div>
+                  <button
+                    onClick={() => copyPhone(c.phone)}
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Copy className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
 

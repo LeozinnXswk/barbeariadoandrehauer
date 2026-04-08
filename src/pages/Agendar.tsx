@@ -4,17 +4,15 @@ import { ArrowLeft, Clock, Scissors, Calendar, User } from "lucide-react";
 import logoAndre from "@/assets/logo-andre.png";
 
 const services = [
-  { id: 1, name: "Corte de Cabelo", price: "R$ 50,00", duration: "45 min" },
-  { id: 2, name: "Design de Barba", price: "R$ 50,00", duration: "30 min" },
-  { id: 3, name: "Cabelo & Barba", price: "R$ 100,00", duration: "60 min" },
-  { id: 4, name: "Pezinho", price: "R$ 15,00", duration: "15 min" },
-  { id: 5, name: "Máquina no Cabelo", price: "R$ 35,00", duration: "30 min" },
-  { id: 6, name: "Máquina na Barba", price: "R$ 35,00", duration: "30 min" },
-  { id: 7, name: "Selagem", price: "A partir de R$ 80,00", duration: "45 min" },
-  { id: 8, name: "Hidratação", price: "R$ 40,00", duration: "30 min" },
+  { id: 1, name: "Cabelo", price: "R$ 50,00", duration: "45 min" },
+  { id: 2, name: "Barba", price: "R$ 40,00", duration: "30 min" },
+  { id: 3, name: "Cabelo e Barba", price: "R$ 80,00", duration: "60 min" },
+  { id: 4, name: "Pé de Cabelo", price: "R$ 20,00", duration: "15 min" },
+  { id: 5, name: "Sobrancelha", price: "R$ 20,00", duration: "15 min" },
+  { id: 6, name: "Depilação de Orelha e Nariz", price: "R$ 10,00", duration: "10 min" },
 ];
 
-const barbers = ["André", "Carlos", "Felipe"];
+const barbers = ["André", "José", "Vinícius", "Kauê"];
 
 const timeSlots = [
   "10:00", "10:30", "11:00", "11:30", "12:00",
