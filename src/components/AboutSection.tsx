@@ -35,14 +35,14 @@ const AboutSection = () => {
             <h3 className="text-primary font-heading text-xl font-semibold mb-4">
               Horário de Atendimento
             </h3>
-            <div className="bg-card rounded-lg border border-border p-6 space-y-3">
+             <div className="bg-card rounded-lg border border-border p-6 space-y-3">
               {[
-                { day: "Segunda-Feira", hours: "10:00 - 20:00" },
-                { day: "Terça-Feira", hours: "10:00 - 20:00" },
-                { day: "Quarta-Feira", hours: "10:00 - 20:00" },
-                { day: "Quinta-Feira", hours: "10:00 - 20:00" },
-                { day: "Sexta-Feira", hours: "10:00 - 20:00" },
-                { day: "Sábado", hours: "10:00 - 18:00" },
+                { day: "Segunda-Feira", hours: "Fechado" },
+                { day: "Terça-Feira", hours: "09:00 - 19:00" },
+                { day: "Quarta-Feira", hours: "09:00 - 19:00" },
+                { day: "Quinta-Feira", hours: "09:00 - 19:00" },
+                { day: "Sexta-Feira", hours: "09:00 - 19:00" },
+                { day: "Sábado", hours: "09:00 - 20:00" },
                 { day: "Domingo", hours: "Fechado" },
               ].map((item) => {
                 const today = new Date().toLocaleDateString("pt-BR", { weekday: "long" });
