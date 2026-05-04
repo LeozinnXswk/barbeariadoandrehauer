@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import logoAndre from "@/assets/logo-andre.png";
+import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
   { label: "Início", path: "/" },
@@ -13,6 +14,8 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { user, roles, signOut } = useAuth();
+  const isBarber = roles.includes("barber") || roles.includes("admin");
 
   const scrollTo = (id: string) => {
     setOpen(false);
@@ -48,8 +51,16 @@ const Navbar = () => {
             to="/login"
             className="text-sm text-foreground/70 hover:text-primary transition-colors"
           >
-            Entrar
+            {user ? "Minha Conta" : "Entrar"}
           </Link>
+          {isBarber && (
+            <Link to="/painel" className="text-sm text-primary hover:underline">Painel</Link>
+          )}
+          {user && (
+            <button onClick={() => signOut()} className="text-muted-foreground hover:text-primary" title="Sair">
+              <LogOut size={18} />
+            </button>
+          )}
           <Link
             to="/agendar"
             className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
@@ -86,8 +97,16 @@ const Navbar = () => {
             onClick={() => setOpen(false)}
             className="block text-foreground/70 hover:text-primary transition-colors py-2"
           >
-            Entrar
+            {user ? "Minha Conta" : "Entrar"}
           </Link>
+          {isBarber && (
+            <Link to="/painel" onClick={() => setOpen(false)} className="block text-primary py-2">Painel do Barbeiro</Link>
+          )}
+          {user && (
+            <button onClick={() => { signOut(); setOpen(false); }} className="block text-foreground/70 hover:text-primary py-2 w-full text-left">
+              Sair
+            </button>
+          )}
           <Link
             to="/agendar"
             onClick={() => setOpen(false)}
