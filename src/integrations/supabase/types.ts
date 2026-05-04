@@ -163,6 +163,12 @@ export type Database = {
       }
     }
     Functions: {
+      get_busy_slots: {
+        Args: { _barber_id: string; _date: string }
+        Returns: {
+          appointment_time: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
