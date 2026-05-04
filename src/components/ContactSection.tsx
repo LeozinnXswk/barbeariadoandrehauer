@@ -6,9 +6,9 @@ const paymentMethods = [
 ];
 
 const phoneContacts = [
-  { name: "Barbeiro André", phone: "(41) 9553-0001" },
-  { name: "Barbeiro José", phone: "(41) 9143-9149" },
-  { name: "Barbeiro Kauê", phone: "(41) 9824-4945" },
+  { name: "Barbeiro André", phone: "(41) 99553-0001" },
+  { name: "Barbeiro José", phone: "(41) 99143-9149" },
+  { name: "Barbeiro Kauê", phone: "(41) 99824-4945" },
 ];
 
 const ContactSection = () => {
