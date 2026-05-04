@@ -7,6 +7,8 @@ import Index from "./pages/Index.tsx";
 import Login from "./pages/Login.tsx";
 import Agendar from "./pages/Agendar.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Painel from "./pages/Painel.tsx";
+import { AuthProvider } from "./hooks/useAuth";
 
 const queryClient = new QueryClient();
 
@@ -16,12 +18,15 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/agendar" element={<Agendar />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/agendar" element={<Agendar />} />
+            <Route path="/painel" element={<Painel />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
