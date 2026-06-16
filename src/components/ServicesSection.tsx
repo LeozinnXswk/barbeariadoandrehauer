@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Clock, Scissors } from "lucide-react";
 
 const services = [
-  { name: "Cabelo", price: "R$ 5,00", duration: "45 min" },
+  { name: "Cabelo", price: "R$ 50,00", duration: "45 min" },
   { name: "Barba", price: "R$ 40,00", duration: "30 min" },
   { name: "Cabelo e Barba", price: "R$ 80,00", duration: "60 min" },
   { name: "Pé de Cabelo", price: "R$ 20,00", duration: "15 min" },
