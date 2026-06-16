@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logoAndre from "@/assets/logo-andre.png";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -56,17 +56,12 @@ const Navbar = () => {
           {isBarber && (
             <Link to="/painel" className="text-sm text-primary hover:underline">Painel</Link>
           )}
-          {user && (
-            <button onClick={() => signOut()} className="text-muted-foreground hover:text-primary" title="Sair">
-              <LogOut size={18} />
-            </button>
-          )}
-          <Link
-            to="/agendar"
+          <button
+            onClick={() => signOut()}
             className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
           >
-            Agendar Agora
-          </Link>
+            Sair Agora
+          </button>
         </div>
 
         <button
@@ -102,18 +97,12 @@ const Navbar = () => {
           {isBarber && (
             <Link to="/painel" onClick={() => setOpen(false)} className="block text-primary py-2">Painel do Barbeiro</Link>
           )}
-          {user && (
-            <button onClick={() => { signOut(); setOpen(false); }} className="block text-foreground/70 hover:text-primary py-2 w-full text-left">
-              Sair
-            </button>
-          )}
-          <Link
-            to="/agendar"
-            onClick={() => setOpen(false)}
-            className="block bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold text-center"
+          <button
+            onClick={() => { signOut(); setOpen(false); }}
+            className="block bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold text-center w-full"
           >
-            Agendar Agora
-          </Link>
+            Sair Agora
+          </button>
         </div>
       )}
     </nav>
