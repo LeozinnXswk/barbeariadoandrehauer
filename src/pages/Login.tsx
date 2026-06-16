@@ -50,13 +50,6 @@ const Login = () => {
     }
   };
 
-  const handleGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin },
-    });
-    if (error) toast.error(error.message);
-  };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
@@ -111,16 +104,6 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="my-4 flex items-center gap-3">
-          <div className="h-px bg-border flex-1" />
-          <span className="text-xs text-muted-foreground">ou</span>
-          <div className="h-px bg-border flex-1" />
-        </div>
-
-        <button onClick={handleGoogle}
-          className="w-full bg-card border border-border text-foreground py-3 rounded-md font-semibold hover:bg-secondary transition-colors">
-          Continuar com Google
-        </button>
 
         <p className="text-center text-muted-foreground text-sm mt-6">
           {isSignup ? "Já tem uma conta?" : "Não tem conta?"}{" "}
