@@ -56,12 +56,21 @@ const Navbar = () => {
           {isBarber && (
             <Link to="/painel" className="text-sm text-primary hover:underline">Painel</Link>
           )}
-          <button
-            onClick={() => signOut()}
-            className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            Sair Agora
-          </button>
+          {user ? (
+            <button
+              onClick={() => signOut()}
+              className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Sair Agora
+            </button>
+          ) : (
+            <Link
+              to="/agendar"
+              className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Agendar Agora
+            </Link>
+          )}
         </div>
 
         <button
@@ -97,12 +106,22 @@ const Navbar = () => {
           {isBarber && (
             <Link to="/painel" onClick={() => setOpen(false)} className="block text-primary py-2">Painel do Barbeiro</Link>
           )}
-          <button
-            onClick={() => { signOut(); setOpen(false); }}
-            className="block bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold text-center w-full"
-          >
-            Sair Agora
-          </button>
+          {user ? (
+            <button
+              onClick={() => { signOut(); setOpen(false); }}
+              className="block bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold text-center w-full"
+            >
+              Sair Agora
+            </button>
+          ) : (
+            <Link
+              to="/agendar"
+              onClick={() => setOpen(false)}
+              className="block bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold text-center w-full"
+            >
+              Agendar Agora
+            </Link>
+          )}
         </div>
       )}
     </nav>
