@@ -56,12 +56,21 @@ const Navbar = () => {
           {isBarber && (
             <Link to="/painel" className="text-sm text-primary hover:underline">Painel</Link>
           )}
-          <button
-            onClick={() => signOut()}
-            className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            Sair Agora
-          </button>
+          {user ? (
+            <button
+              onClick={() => signOut()}
+              className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Sair Agora
+            </button>
+          ) : (
+            <Link
+              to="/agendar"
+              className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Agendar Agora
+            </Link>
+          )}
         </div>
 
         <button
