@@ -1,0 +1,1 @@
+CREATE POLICY "Barbers view clients profiles" ON public.profiles FOR SELECT TO authenticated USING (EXISTS (SELECT 1 FROM public.appointments a JOIN public.barbers b ON b.id = a.barber_id WHERE a.client_id = profiles.user_id AND b.user_id = auth.uid()));
