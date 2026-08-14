@@ -51,6 +51,17 @@ const icsBody = (events: CalendarEvent[]) => {
       `SUMMARY:${e.title}`,
       `DESCRIPTION:${(e.description ?? "").replace(/\n/g, "\\n")}`,
       `LOCATION:${e.location ?? ""}`,
+      // Lembretes que tocam no celular do barbeiro
+      "BEGIN:VALARM",
+      "TRIGGER:-PT60M",
+      "ACTION:DISPLAY",
+      `DESCRIPTION:Em 1 hora: ${e.title}`,
+      "END:VALARM",
+      "BEGIN:VALARM",
+      "TRIGGER:-PT15M",
+      "ACTION:DISPLAY",
+      `DESCRIPTION:Em 15 minutos: ${e.title}`,
+      "END:VALARM",
       "END:VEVENT"
     );
   });
