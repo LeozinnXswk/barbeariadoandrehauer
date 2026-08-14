@@ -100,7 +100,7 @@ const Painel = () => {
               onClick={() => downloadIcs(activeAppts.map(toEvent), `agenda-${filterDate}.ics`)}
               className="w-full flex items-center justify-center gap-2 bg-gold-gradient text-primary-foreground px-4 py-3 rounded-md text-sm font-semibold hover:opacity-90 transition-opacity"
             >
-              <Download className="w-4 h-4" /> Enviar o dia todo para a agenda do celular
+              <Download className="w-4 h-4" /> Enviar o dia todo com lembretes
             </button>
             {appts.map((a) => (
               <div key={a.id} className="bg-card border border-border rounded-lg p-4">
@@ -132,7 +132,7 @@ const Painel = () => {
                       onClick={() => downloadIcs([toEvent(a)], `agendamento-${a.appointment_date}-${a.appointment_time.slice(0, 5)}.ics`)}
                       className="flex items-center gap-1 border border-border text-foreground/80 text-xs px-3 py-2 rounded-md hover:bg-muted transition-colors"
                     >
-                      <Download className="w-3 h-3" /> Agenda do celular (.ics)
+                      <Download className="w-3 h-3" /> Lembrete no celular
                     </button>
                   </div>
                 )}
@@ -142,7 +142,7 @@ const Painel = () => {
         )}
 
         <p className="text-xs text-muted-foreground mt-8 text-center">
-          Você verá apenas os agendamentos vinculados ao seu cadastro de barbeiro. Toque em "Google Agenda" ou baixe o arquivo .ics para que o horário apareça direto na agenda do seu celular.
+          Você verá apenas os agendamentos vinculados ao seu cadastro de barbeiro. Ao adicionar na agenda do celular, o alarme avisa automaticamente 1 hora e 15 minutos antes de cada horário.
         </p>
       </div>
     </div>
