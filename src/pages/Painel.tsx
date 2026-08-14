@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, CalendarPlus, Download, LogOut } from "lucide-react";
+import { ArrowLeft, Bell, BellOff, Calendar, CalendarPlus, Download, LogOut } from "lucide-react";
 import logoAndre from "@/assets/logo-andre.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { BARBERSHOP_ADDRESS, CalendarEvent, downloadIcs, googleCalendarUrl } from "@/lib/calendar";
+import { disablePush, enablePush, isPushEnabled, pushSupported } from "@/lib/push";
+import { toast } from "sonner";
 
 type Appt = {
   id: string;
@@ -23,6 +25,8 @@ const Painel = () => {
   const [appts, setAppts] = useState<Appt[]>([]);
   const [filterDate, setFilterDate] = useState(new Date().toISOString().split("T")[0]);
   const [busy, setBusy] = useState(true);
+  const [pushOn, setPushOn] = useState(false);
+  const [pushBusy, setPushBusy] = useState(false);
   const navigate = useNavigate();
 
   const toEvent = (a: Appt): CalendarEvent => ({
@@ -39,6 +43,30 @@ const Painel = () => {
   useEffect(() => {
     if (!loading && !user) navigate("/login");
   }, [user, loading, navigate]);
+
+  useEffect(() => {
+    if (pushSupported()) isPushEnabled().then(setPushOn);
+  }, []);
+
+  const togglePush = async () => {
+    if (!user) return;
+    setPushBusy(true);
+    try {
+      if (pushOn) {
+        await disablePush();
+        setPushOn(false);
+        toast.success("Notificações desativadas neste celular.");
+      } else {
+        await enablePush(user.id);
+        setPushOn(true);
+        toast.success("Pronto! Você receberá notificações de novos agendamentos.");
+      }
+    } catch (err: any) {
+      toast.error(err.message ?? "Não foi possível ativar as notificações.");
+    } finally {
+      setPushBusy(false);
+    }
+  };
 
   useEffect(() => {
     if (!user) return;
@@ -82,6 +110,38 @@ const Painel = () => {
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-2xl">
+        <div className="mb-6 bg-card border border-border rounded-lg p-4">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-foreground font-semibold flex items-center gap-2">
+                <Bell className="w-4 h-4 text-primary" /> Notificações no celular
+              </p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Receba um aviso na tela do celular assim que um cliente marcar horário com você.
+              </p>
+            </div>
+            {pushSupported() ? (
+              <button
+                onClick={togglePush}
+                disabled={pushBusy}
+                className={`shrink-0 flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-opacity disabled:opacity-50 ${
+                  pushOn
+                    ? "border border-border text-foreground/80 hover:bg-muted"
+                    : "bg-gold-gradient text-primary-foreground hover:opacity-90"
+                }`}
+              >
+                {pushOn ? <BellOff className="w-4 h-4" /> : <Bell className="w-4 h-4" />}
+                {pushOn ? "Desativar" : "Ativar"}
+              </button>
+            ) : (
+              <span className="text-xs text-muted-foreground shrink-0">Não suportado aqui</span>
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground mt-3">
+            No iPhone, primeiro adicione o site à tela de início (Compartilhar → Adicionar à Tela de Início) e abra pelo ícone.
+          </p>
+        </div>
+
         <div className="mb-6">
           <label className="text-sm text-muted-foreground mb-2 block flex items-center gap-2">
             <Calendar className="w-4 h-4" /> Agenda do dia
