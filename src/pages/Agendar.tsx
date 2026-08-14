@@ -75,6 +75,18 @@ const Agendar = () => {
 
       toast.success("Agendamento confirmado!");
 
+      // Notificação push no celular do barbeiro
+      supabase.functions
+        .invoke("notify-barber", {
+          body: {
+            barber_id: barber.id,
+            title: `Novo agendamento • ${time}`,
+            body: `${clientName} — ${service.name} em ${dateBR} às ${time}`,
+            url: "/painel",
+          },
+        })
+        .catch(() => {});
+
       if (barber.phone) {
         const msg = `*Novo agendamento - Barbearia do André*%0A%0A👤 Cliente: ${clientName}%0A📞 Telefone: ${clientPhone}%0A✂️ Serviço: ${service.name}%0A💰 Valor: R$ ${service.price.toFixed(2)}%0A📅 Data: ${dateBR}%0A🕐 Horário: ${time}`;
         window.open(`https://wa.me/${barber.phone}?text=${msg}`, "_blank");
